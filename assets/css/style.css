@@ -1,0 +1,261 @@
+New chat
+Today
+Earthquake Tracker HTML Code.
+
+
+Fixing Broken AJAX Request.
+Yesterday
+Reminder app for tasks.
+JS Cookies: Save, Read, Delete.
+Previous 7 Days
+Stock advice summary.
+Upgrade to Plus
+NEW
+
+
+User
+jedichang999@gmail.com
+
+User
+write me html code for an earthquake Tracker
+ChatGPT
+Sure, here is an example HTML code for an earthquake tracker:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Earthquake Tracker</title>
+  <style>
+    /* Add some basic styles to make the page look nicer */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+    }
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Earthquake Tracker</h1>
+  <div id="map"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script>
+    // Define the initial map center and zoom level
+    const mapCenter = { lat: 0, lng: 0 };
+    const mapZoom = 2;
+    
+    // Create the map object and center it on the defined location
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: mapCenter,
+      zoom: mapZoom
+    });
+
+    // Fetch earthquake data from a public API
+    const apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-05-01&endtime=2021-05-09&minmagnitude=5';
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Loop through the earthquake data and create a marker for each event
+        data.features.forEach(event => {
+          const marker = new google.maps.Marker({
+            position: { lat: event.geometry.coordinates[1], lng: event.geometry.coordinates[0] },
+            map: map,
+            title: event.properties.title
+          });
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
+This code uses the Google Maps JavaScript API to create a map and fetch earthquake data from the USGS public API. It then loops through the earthquake data and creates a marker for each event on the map. You will need to replace YOUR_API_KEY with your own API key from the Google Cloud Console.
+
+
+
+
+
+User
+can you include the USGS Earthquake Catalog API as well
+ChatGPT
+Yes, here's an updated HTML code that includes the USGS Earthquake Catalog API:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Earthquake Tracker</title>
+  <style>
+    /* Add some basic styles to make the page look nicer */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+    }
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Earthquake Tracker</h1>
+  <div id="map"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script>
+    // Define the initial map center and zoom level
+    const mapCenter = { lat: 0, lng: 0 };
+    const mapZoom = 2;
+
+    // Create the map object and center it on the defined location
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: mapCenter,
+      zoom: mapZoom
+    });
+
+    // Fetch earthquake data from the USGS Earthquake Catalog API
+    const apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-05-01&endtime=2021-05-09&minmagnitude=5';
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Loop through the earthquake data and create a marker for each event
+        data.features.forEach(event => {
+          const marker = new google.maps.Marker({
+            position: { lat: event.geometry.coordinates[1], lng: event.geometry.coordinates[0] },
+            map: map,
+            title: event.properties.title
+          });
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
+This code fetches earthquake data from the USGS Earthquake Catalog API and creates a marker for each event on the map using the same approach as before. Note that you will need to replace YOUR_API_KEY with your own API key from the Google Cloud Console. Also, you may need to update the apiUrl variable to fetch earthquake data for a different time period or minimum magnitude threshold.
+
+
+
+
+
+User
+can you separate the html, css, and JS. 
+Also make a section to display your history that is saved in your local storage. 
+ChatGPT
+Sure! Here's the updated HTML, CSS, and JS code, including a section to display the earthquake history saved in local storage:
+
+HTML:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Earthquake Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Earthquake Tracker</h1>
+  <div id="map"></div>
+  <div id="history"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+CSS (in style.css):
+
+css
+Copy code
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#map {
+  height: 400px;
+}
+
+#history {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #eee;
+}
+JS (in script.js):
+
+js
+Copy code
+// Define the initial map center and zoom level
+const mapCenter = { lat: 0, lng: 0 };
+const mapZoom = 2;
+
+// Create the map object and center it on the defined location
+const map = new google.maps.Map(document.getElementById('map'), {
+  center: mapCenter,
+  zoom: mapZoom
+});
+
+// Fetch earthquake data from the USGS Earthquake Catalog API
+const apiUrl = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-05-01&endtime=2021-05-09&minmagnitude=5';
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Loop through the earthquake data and create a marker for each event
+    data.features.forEach(event => {
+      const marker = new google.maps.Marker({
+        position: { lat: event.geometry.coordinates[1], lng: event.geometry.coordinates[0] },
+        map: map,
+        title: event.properties.title
+      });
+
+      // Add the event to the earthquake history in local storage
+      const history = JSON.parse(localStorage.getItem('earthquakeHistory')) || [];
+      history.push(event);
+      localStorage.setItem('earthquakeHistory', JSON.stringify(history));
+    });
+  })
+  .catch(error => console.error(error));
+
+// Display the earthquake history in the history section
+const historyDiv = document.getElementById('history');
+const history = JSON.parse(localStorage.getItem('earthquakeHistory')) || [];
+historyDiv.innerHTML = `<h2>Earthquake History</h2>`;
+if (history.length > 0) {
+  historyDiv.innerHTML += `<ul>`;
+  history.forEach(event => {
+    historyDiv.innerHTML += `<li>${event.properties.title}</li>`;
+  });
+  historyDiv.innerHTML += `</ul>`;
+} else {
+  historyDiv.innerHTML += `<p>No earthquake history found.</p>`;
+}
+This code fetches earthquake data from the USGS Earthquake Catalog API, creates a marker for each event on the map, and saves each event to the earthquake history in local storage. It then displays the earthquake history in the history section, showing the title of each event in a list. Note that you will need to replace YOUR_API_KEY with your own API key from the Google Cloud Console. Also, you may need to update the apiUrl variable to fetch earthquake data for a different time period or minimum magnitude threshold.
+
+
+
+
+
+
+Regenerate response
+Send a message.
+
+Free Research Preview. ChatGPT may produce inaccurate information about people, places, or facts. ChatGPT May 3 Version
+ChatGPT
