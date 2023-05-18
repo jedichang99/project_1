@@ -1,17 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Earthquake Tracker</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <h1>Earthquake Tracker</h1>
-    <div id="map"></div>
-    <div id="history"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
-    <script src="./assets/js/script.js"></script>
-  </body>
+    <link rel="stylesheet" type="text/css" href="assets/style.css"/>
+</head>
+
+<body>
+    <header>
+            <h1 class="display-3">Earthquake Tracker</h1>
+              <button id="help-button">Help</button>
+      <div id="help-modal" class="modal">
+        <div class="modal-content">
+          <span class="close" style="float: right">&times;</span>
+          <h1>How to use Earthquake Tracker</h1>
+          <p>
+            Welcome to Earthquake Tracker! This website allows you to search for
+            recent earthquakes around the world and view them on a map. Here's
+            how to use it:
+          </p>
+          <ol>
+            <li>Enter a location in the search bar and click "Search".</li>
+            <li>
+              Adjust the search parameters as desired, and click "Submit".
+            </li>
+            <li>
+              The earthquake results will be displayed in a list on the left,
+              and a map with markers for each earthquake will be displayed on
+              the right.
+            </li>
+            <li>
+              Click on an earthquake in the list or on a marker on the map to
+              view more details about that earthquake.
+            </li>
+            <li>
+              Use the zoom and pan controls on the map to explore different
+              areas.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </header>
+
+    <main>
+        <form id="api-key-form" style="display: none; flex-direction: column; width: 300px;">
+            <label for="google-maps-api-key">Google Maps API Key:</label>
+            <input type="password" name="map-key" id="map-key" />
+            <button type="submit">Add key</button>
+          </form>
+
+        <section class="search-area">
+            <h2>Search for Location:</h2>
+            <input id="search-input" type="text" placeholder="Enter Location Here!">
+            <p class="warning location-warning"></p>
+            <button id="location-button">Search</button>
+                <div id="parameter-modal" class="modal">
+                    <div class='modal-content'>
+                        <span class="close" style="float: right">&times;</span>
+                        <h1>What parameters?</h1>
+                        <h3>Distance from Location (Default 20km)</h3>
+                        <input id="search-radius" type="text" placeholder="Max search radius">
+                        <p class="warning radius-warning"></p>
+                        <h3>Minimum Magnitude</h3>
+                        <select id="min-magnitude">
+                            <option value="M1.0+">M1.0+</option>
+                            <option value="M2.5+">M2.5+</option>
+                            <option value="M4.5+">M4.5+</option>
+                            <option value="M6.0+">M6.0+</option>
+                        </select>
+                        <h3>Time Range (Default past 7 days to present)</h3>
+                        <label for="start-date">From:</label>
+                        <input type="date" id="start-date" name="start-date">
+                        <p class="start-date-warning warning"></p>
+                        <label for="end-date">To:</label>
+                        <input type="date" id="end-date" name="end-date">
+                        <p class="end-date-warning warning"></p>
+                        <p></p>
+                        <h3>Map Type</h3>
+                        <select id="map-type">
+                            <option value="roadmap">Roadmap</option>
+                            <option value="satellite">Satellite</option>
+                            <option value="terrain">Terrain</option>
+                            <option value="hybrid">Hybrid (Roadmap + Satellite)</option>
+                        </select>
+                        <p></p>
+                        <button id="parameters-button">Submit</button>
+                    </div>
+                </div>
+              <h3>Previous Searches</h3>
+              <div class="history"></div>
+                <ul id="searchHistory"></ul>
+              </div>
+        </section>
+
+        <section class="earthquake-results">
+          <section class="earthquakes-window">
+            <h2>Earthquake Results:</h2>
+            <button class="sort-button" style="float: right">Sort</button>
+            <div id="sort-modal" class="modal">
+                <div class='modal-content'>
+                    <span class="close" style="float: right">&times;</span>
+                    <h3>How would you like to sort your earthquake results?</h3>
+                    <select id="sort-parameters">
+                        <option value="most-recent">From Most Recent (Default)</option>
+                        <option value="least-recent">From Least Recent</option>
+                        <option value="descending-mag">Strongest to Weakest</option>
+                        <option value="ascending-mag">Weakest to Strongest</option>
+                    </select>
+                    <p></p>
+                    <button class="submit-button">Submit</button>
+                </div>
+            </div>
+            <p class="earthquakes-message"></p>
+            <p class="earthquake-parameters"></p>
+            <ol class="earthquake-list">
+            
+            </ol>
+          </section>
+
+          <section class="map-result">
+          </section>
+        </section>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets/script.js"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous">
+    </script>
+</body>
+
 </html>
