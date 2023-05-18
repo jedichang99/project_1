@@ -1,0 +1,352 @@
+/* Global styles */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+  
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+  
+/* Header styles */
+  
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+  
+h1.display-3 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+#api-key-form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: 2px solid gray;
+    padding: 20px;
+    border-radius: 10px;
+}
+  
+#api-key-form label {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+  
+#api-key-form input[type="password"] {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+  
+#api-key-form button[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+  
+#api-key-form button[type="submit"]:hover {
+    background-color: #333;
+}
+
+
+/* Search area styles */
+  
+.search-area {
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+  
+.search-area h2 {
+    margin-bottom: 0.5rem;
+}
+  
+#search-input {
+    width: 100%;
+    padding: 0.5rem 0.2rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+  
+.warning {
+    color: red;
+    font-style: bold;
+    font-size: 0.8rem;
+    margin: 0.5rem;
+}
+  
+#location-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    width: 100%;
+    font-size: 20px;
+}
+  
+/* Modal styles */
+  
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+  
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 1rem;
+    border: 1px solid #888;
+    width: 60%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: rgb(160, 202, 199)
+}
+
+.modal-content h3 {
+    line-height: 120%;
+}
+
+#min-magnitude {
+    margin-bottom: 1rem;
+}
+  
+.close {
+    color: #888;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#parameters-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer; 
+}
+  
+/* Earthquake results styles */
+  
+.earthquake-results {
+    height: 65vh;
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: none;
+    justify-content: space-around;
+    flex: 1;
+}
+  
+.earthquakes-window {
+    padding: 0 2rem;
+    width: 60vh;
+}
+
+.earthquake-results h2 {
+    margin-bottom: 0.5rem;
+}
+  
+.earthquakes-message {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+  
+.earthquake-parameters {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.earthquake-list li {
+    padding: 0.5rem;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+.search-history-item {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin: 0 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.sort-button {
+    display: none;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+#sort-parameters {
+    font-size: 15px;
+}
+
+.submit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.earthquake-list {
+    height: 50vh;
+    overflow-y: auto; /* Add a scrollbar to the list */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1rem;
+    padding-left: 2rem;
+    flex: 1;
+ }
+
+ .map-result {
+    display: flex;
+    align-content: center;
+ }
+
+#help-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    padding: 10px;
+    background-color: rgb(160, 202, 199)
+}
+  
+#help-modal {
+    display: none;
+    position: fixed;
+    z-index: 9998;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+  
+.modal-content {
+    background-color: rgb(160, 202, 199);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+  
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: #bdbdbd;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #797979;
+}
+  
+@media screen and (max-width: 1000px) {
+    .earthquake-results {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .earthquakes-window {
+        margin: auto;
+        background-color: #fff;
+        overflow-y: auto;
+        height: 50%;
+        width: 80%;
+    }
+
+    .earthquake-list {
+        height: 20vh;
+        flex: 1;
+    }
+
+    .map-result img{
+        width: 100%;
+        padding: 2rem 0;
+        justify-content: center;
+    }
+  }
